@@ -2,6 +2,7 @@ package prices
 
 import (
 	"math/rand"
+	"slices"
 )
 
 type ExchangeHouse struct {
@@ -34,4 +35,68 @@ func GetPricesMock() ([]ExchangeHouse, error) {
 	}
 
 	return exchangeHouses, nil
+}
+
+type DollarPrice struct {
+	Name  string
+	URL   string
+	Logo  string
+	Price float64
+}
+
+type BestPrices struct {
+	Buying  []DollarPrice
+	Selling []DollarPrice
+}
+
+// BestExchangeHouses takes a slice of ExchangeHouse and returns
+// the best places to buy and sell dollars.
+// Buying is sorted so the lowest price is first.
+// Selling is sorted so the highest price is first.
+func BestExchangeHouses(houses []ExchangeHouse) BestPrices {
+	bestBuying := make([]DollarPrice, 0)
+	bestSelling := make([]DollarPrice, 0)
+
+	for _, house := range houses {
+		if house.BuyPrice > 0 {
+			bestBuying = append(bestBuying, DollarPrice{
+				Name:  house.Name,
+				URL:   house.URL,
+				Logo:  house.Logo,
+				Price: house.BuyPrice,
+			})
+		}
+		if house.SellPrice > 0 {
+			bestSelling = append(bestSelling, DollarPrice{
+				Name:  house.Name,
+				URL:   house.URL,
+				Logo:  house.Logo,
+				Price: house.SellPrice,
+			})
+		}
+	}
+
+	// Sort bestBuying by Price ascending
+	slices.SortFunc(bestBuying, func(a, b DollarPrice) int {
+		if a.Price < b.Price {
+			return -1
+		} else if a.Price > b.Price {
+			return 1
+		}
+		return 0
+	})
+	// Sort bestSelling by Price descending
+	slices.SortFunc(bestSelling, func(a, b DollarPrice) int {
+		if a.Price > b.Price {
+			return -1
+		} else if a.Price < b.Price {
+			return 1
+		}
+		return 0
+	})
+
+	return BestPrices{
+		Buying:  bestBuying,
+		Selling: bestSelling,
+	}
 }
