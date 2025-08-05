@@ -1,8 +1,9 @@
 package main
 
 import (
+	"html/template"
+	"log/slog"
 	"net/http"
-	"text/template"
 
 	"github.com/Ed1123/dollar-go/prices"
 )
@@ -30,10 +31,18 @@ func pricesHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	tmpl, err := template.ParseFiles("templates/data.html")
+	slog.Info("Fetched prices", "count", len(data))
+	bestPrices := prices.BestExchangeHouses(data)
+	tmpl, err := template.ParseFiles("templates/prices.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error("Failed to parse template", "error", err)
 		return
 	}
-	tmpl.Execute(w, data)
+	err = tmpl.Execute(w, bestPrices.Buying)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error("Failed to execute template", "error", err)
+		return
+	}
 }
