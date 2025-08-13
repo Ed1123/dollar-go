@@ -33,7 +33,7 @@ func pricesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	slog.Info("Fetched prices", "count", len(data))
 	bestPrices := prices.BestExchangeHouses(data)
-	tmpl, err := template.ParseFiles("templates/prices.html")
+	tmpl, err := template.ParseFiles("templates/prices_list.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		slog.Error("Failed to parse template", "error", err)

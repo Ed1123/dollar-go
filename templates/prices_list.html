@@ -1,18 +1,11 @@
+{{ block "prices-list" .}}
 <style>
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    ul li a {
+    a {
         display: block;
         width: 100%;
-        text-decoration: none;
-        padding: 5px;
     }
 
-    ul li a:hover {
+    a:hover {
         background-color: #ccc;
     }
 
@@ -42,3 +35,4 @@
     </li>
     {{end}}
 </ul>
+{{ end }}
