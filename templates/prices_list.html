@@ -1,4 +1,3 @@
-{{ block "prices-list" .}}
 <style>
     a {
         display: block;
@@ -24,6 +23,8 @@
         border-radius: 20%;
     }
 </style>
+
+{{ define "prices-list"}}
 <ul>
     {{range $i, $ex := . }}
     <li>
@@ -36,3 +37,13 @@
     {{end}}
 </ul>
 {{ end }}
+
+<!-- main html -->
+<div>
+    <h2>Best places to sell Dollars and get Soles</h2>
+    {{ template "prices-list" .Selling }}
+</div>
+<div>
+    <h2>Best places to buy Dollars with Soles</h2>
+    {{ template "prices-list" .Buying }}
+</div>

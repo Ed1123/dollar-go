@@ -39,7 +39,7 @@ func pricesHandler(w http.ResponseWriter, r *http.Request) {
 		slog.Error("Failed to parse template", "error", err)
 		return
 	}
-	err = tmpl.Execute(w, bestPrices.Buying)
+	err = tmpl.Execute(w, bestPrices)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		slog.Error("Failed to execute template", "error", err)
