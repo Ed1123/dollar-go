@@ -35,6 +35,20 @@ func GetPricesMock() ([]ExchangeHouse, error) {
 			BuyPrice:  math.Round((rand.Float64()+3)*1000) / 1000,
 			SellPrice: math.Round((rand.Float64()+3)*1000) / 1000,
 		},
+		{
+			Name:      "Exchange C",
+			URL:       "https://example.com/exchange-c",
+			Logo:      "https://images.unsplash.com/photo-1584044283481-9b18070011e1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+			BuyPrice:  math.Round((rand.Float64()+3)*1000) / 1000,
+			SellPrice: math.Round((rand.Float64()+3)*1000) / 1000,
+		},
+		{
+			Name:      "Exchange D",
+			URL:       "https://example.com/exchange-d",
+			Logo:      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREh1QdeZms_FPe7R2a_wGvpti_aNnJxQAs_g&s",
+			BuyPrice:  math.Round((rand.Float64()+3)*1000) / 1000,
+			SellPrice: math.Round((rand.Float64()+3)*1000) / 1000,
+		},
 	}
 
 	return exchangeHouses, nil
