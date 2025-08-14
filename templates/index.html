@@ -9,11 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"
         integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm"
         crossorigin="anonymous"></script>
+    <meta name="htmx-config" content='{"htmx.config.globalViewTransitions":"true"}'>
 </head>
 
 <body>
     <h1>Best Places to Buy and Sell Dollars in Peru</h1>
-    <div class="container" hx-get="/prices" hx-trigger="load" hx-swap="innerHTML">
+    <div class="container" hx-get="/prices" hx-trigger="load" hx-swap="innerHTML transition:true">
         <p>Prices will be loaded here...</p>
         <img id="indicator" class="htmx-indicator" src="/static/tail-spin.svg" />
     </div>
