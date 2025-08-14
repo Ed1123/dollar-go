@@ -1,7 +1,9 @@
 package prices
 
 import (
+	"encoding/json"
 	"math/rand"
+	"net/http"
 	"slices"
 	"time"
 )
@@ -36,6 +38,26 @@ func GetPricesMock() ([]ExchangeHouse, error) {
 	}
 
 	return exchangeHouses, nil
+}
+
+func GetPrices() ([]ExchangeHouse, error) {
+	response, err := http.Get("https://dollar-sol-api-812540214021.us-central1.run.app/rates")
+	if err != nil {
+		return nil, err
+	}
+	defer response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		return nil, http.ErrNotSupported
+	}
+	houses := make([]ExchangeHouse, 0)
+	err = json.NewDecoder(response.Body).Decode(&houses)
+	if err != nil {
+		return nil, err
+	}
+	if len(houses) == 0 {
+		return nil, http.ErrContentLength
+	}
+	return houses, nil
 }
 
 type DollarPrice struct {
