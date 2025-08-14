@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dollar Prices</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"
+        integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <h1>Best Places to Buy and Sell Dollars in Peru</h1>
-    <div class="container">
+    <div class="container" hx-get="/prices" hx-trigger="load" hx-swap="innerHTML">
+        <p>Prices will be loaded here...</p>
+        <img id="indicator" class="htmx-indicator" src="/static/tail-spin.svg" />
     </div>
     <footer>
         <p>View the source code on <a href="https://github.com/your-repo-link">GitHub</a>.</p>

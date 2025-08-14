@@ -3,6 +3,7 @@ package prices
 import (
 	"math/rand"
 	"slices"
+	"time"
 )
 
 type ExchangeHouse struct {
@@ -15,7 +16,7 @@ type ExchangeHouse struct {
 
 func GetPricesMock() ([]ExchangeHouse, error) {
 	// Simulate a slow API call
-	// time.Sleep(5 * time.Second)
+	time.Sleep(5 * time.Second)
 
 	exchangeHouses := []ExchangeHouse{
 		{
