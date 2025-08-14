@@ -13,7 +13,7 @@ type ExchangeHouse struct {
 	URL       string  `json:"url"`
 	BuyPrice  float64 `json:"buy_price"`
 	SellPrice float64 `json:"sell_price"`
-	Logo      string  `json:"logo,omitempty"`
+	Logo      string  `json:"icon,omitempty"`
 }
 
 func GetPricesMock() ([]ExchangeHouse, error) {
