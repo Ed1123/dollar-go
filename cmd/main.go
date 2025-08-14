@@ -26,7 +26,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func pricesHandler(w http.ResponseWriter, r *http.Request) {
-	data, err := prices.GetPrices()
+	data, err := prices.GetPricesMock()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

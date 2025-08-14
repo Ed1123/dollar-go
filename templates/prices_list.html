@@ -12,8 +12,7 @@
         list-style: none;
         display: flex;
         align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
+        border: 1px solid #ccc;
     }
 
     .icon {
@@ -29,7 +28,11 @@
     {{range $i, $ex := . }}
     <li>
         <a href="{{$ex.URL}}" target="_blank" class="name">
+            {{if $ex.Logo}}
             <img class="icon" src="{{$ex.Logo}}" alt="{{$ex.Name}} icon">
+            {{else}}
+            <img class="icon" src="/static/dollar-icon.svg" alt="Dollar icon">
+            {{end}}
             {{$ex.Name}}
             <span class="price">${{$ex.Price}}</span>
         </a>
