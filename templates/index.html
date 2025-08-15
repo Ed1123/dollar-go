@@ -13,11 +13,13 @@
 </head>
 
 <body>
-    <h1>Best Places to Buy and Sell Dollars in Peru</h1>
-    <div class="container" hx-get="/prices" hx-trigger="load" hx-swap="innerHTML transition:true">
-        <p>Prices will be loaded here...</p>
-        <img id="indicator" class="htmx-indicator" src="/static/tail-spin.svg" />
-    </div>
+    <main>
+        <h1>Tío Rico</h1>
+        <div class="prices-container" hx-get="/prices" hx-trigger="load" hx-swap="innerHTML transition:true">
+            <p>Loading rates...</p>
+            <img id="indicator" class="htmx-indicator" src="/static/tail-spin.svg" />
+        </div>
+    </main>
     <footer>
         <a class="github" href="https://github.com/Ed1123/dollar-go">GitHub</a>
     </footer>

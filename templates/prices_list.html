@@ -1,52 +1,50 @@
 <style>
-    aa {
-        display: block;
-        width: 100%;
-    }
-
-    aa:hover {
-        background-color: #ccc;
-    }
-
-    li {
-        list-style: none;
+    .price-box {
         display: flex;
-        align-items: center;
-        border: 1px solid #ccc;
+        flex-flow: column;
+        align-items: end;
+        padding: 10px;
+        border: 2px solid;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        width: 180px;
     }
 
-    .icon {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-        border-radius: 20%;
+    .price-box:hover {
+        color: var(--black);
+        background-color: var(--white);
+    }
+
+    .prices-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
     }
 </style>
 
 {{ define "prices-list"}}
-<ul>
+<div>
     {{range $i, $ex := . }}
-    <li>
-        <a href="{{$ex.URL}}" target="_blank" class="name">
-            {{if $ex.Logo}}
-            <img class="icon" src="{{$ex.Logo}}" alt="{{$ex.Name}} icon">
-            {{else}}
-            <img class="icon" src="/static/dollar-icon.svg" alt="Dollar icon">
-            {{end}}
-            {{$ex.Name}}
-            <span class="price">${{$ex.Price}}</span>
-        </a>
-    </li>
+    <a class="price-box" href="{{$ex.URL}}" target="_blank">
+        <span>{{$ex.Name}}</span>
+        <span>S/{{$ex.Price}}</span>
+    </a>
     {{end}}
-</ul>
+</div>
 {{ end }}
 
 <!-- main html -->
-<div>
-    <h2>Best places to sell Dollars and get Soles</h2>
+<div class="prices-list">
+    <h2>Best places to sell</h2>
     {{ template "prices-list" .Selling }}
 </div>
-<div>
-    <h2>Best places to buy Dollars with Soles</h2>
+<div class="prices-list">
+    <h2>Best places to buy</h2>
     {{ template "prices-list" .Buying }}
 </div>

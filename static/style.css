@@ -1,13 +1,19 @@
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #121212;
-    color: #D3D3D3;
+:root {
+    --white: #D3D3D3;
+    --black: #121212;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+body {
+    font-family: system-ui;
+    font-size: larger;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 20px;
 }
 
 footer {
@@ -17,4 +23,12 @@ footer {
 .github {
     padding: 10px 15px;
     border-radius: 5px;
+}
+
+.prices-container {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
