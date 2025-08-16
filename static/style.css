@@ -13,17 +13,24 @@ body {
     font-size: larger;
     background-color: var(--black);
     color: var(--white);
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    padding: 50px;
 }
 
 footer {
+    padding-right: 50px;
+    height: 60px;
     text-align: right;
 }
 
-.github {
-    padding: 10px 15px;
-    border-radius: 5px;
-}
+.github {}
 
 .prices-container {
     display: flex;
