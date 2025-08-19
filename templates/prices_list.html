@@ -27,12 +27,16 @@
         margin-bottom: 20px;
         font-weight: normal;
     }
+
+    .hidden {
+        display: none;
+    }
 </style>
 
 {{ define "prices-list"}}
 <div>
     {{range $i, $ex := . }}
-    <a class="price-box" href="{{$ex.URL}}" target="_blank">
+    <a class="price-box {{if gt $i 2}} to-hide hidden {{end}}" href="{{$ex.URL}}" target="_blank">
         <span>{{$ex.Name}}</span>
         <span>S/{{$ex.Price}}</span>
     </a>
@@ -40,12 +44,28 @@
 </div>
 {{ end }}
 
+<script>
+    function togglePrices(id) {
+        const pricesToHide = document.getElementById(id).querySelectorAll('.to-hide');
+        pricesToHide.forEach(price => {
+            price.classList.toggle('hidden');
+        });
+        if (event.target.innerText === 'more') {
+            event.target.innerText = 'less';
+        } else {
+            event.target.innerText = 'more';
+        }
+    }
+</script>
+
 <!-- main html -->
-<div class="prices-list">
+<div id="selling" class="prices-list">
     <h2>Best places to sell</h2>
     {{ template "prices-list" .Selling }}
+    <button onclick="togglePrices('selling')">more</button>
 </div>
-<div class="prices-list">
+<div id="buying" class="prices-list">
     <h2>Best places to buy</h2>
     {{ template "prices-list" .Buying }}
+    <button onclick="togglePrices('buying')">more</button>
 </div>
